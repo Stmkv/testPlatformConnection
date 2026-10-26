@@ -1,0 +1,55 @@
+{
+  "name": "string",
+  "description": "string",
+  "versions": [
+    {
+      "version_number": 1,
+      "status": "draft",
+      "configuration": {
+        "steps": [
+          {
+            "id": "fetch_data",
+            "type": "action",
+            "settings": {
+              "input": {
+                "url": "https://api.example.com/users",
+                "method": "GET",
+                "query_params": {
+                  "id": {
+                    "$ref": "trigger.user_id"
+                  }
+                }
+              },
+              "piece": "http",
+              "action": "request"
+            },
+            "condition": null
+          },
+          {
+            "id": "notify",
+            "type": "action",
+            "settings": {
+              "input": {
+                "body": "Данные загружены",
+                "subject": "Готово",
+                "to_email": {
+                  "$ref": "trigger.email"
+                }
+              },
+              "piece": "email",
+              "action": "send-email"
+            },
+            "condition": null
+          }
+        ],
+        "trigger": {
+          "type": "manual",
+          "settings": {}
+        }
+      },
+      "comment": null,
+      "created_at": "2026-10-26T09:42:21.444628+00:00",
+      "published_at": null
+    }
+  ]
+}
